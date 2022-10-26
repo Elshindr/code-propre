@@ -1,43 +1,68 @@
 package ex3;
 
 import java.util.List;
+import java.util.Map;
 
+/**
+ * The type Zoo.
+ */
 public class Zoo {
 
 	private String nom;
-	private List<String> types;
-	private List<String> noms;
-	private List<String> comportements;
-	
+	private Map<String, Animal> animaux;
+
+	/**
+	 * Instantiates a new Zoo.
+	 *
+	 * @param nom the nom
+	 */
 	public Zoo(String nom){
 		this.nom = nom;
 	}
-	
-	public void addAnimal(String nomAnimal, String typeAnimal, String comportement){
-		types.add(typeAnimal);
-		noms.add(nomAnimal);
-		comportements.add(comportement);
-	}
-	
-	public void afficherListeAnimaux(){
-		for (int i=0; i<types.size(); i++) {
-			System.out.println(noms.get(i)+" "+types.get(i)+" "+comportements.get(i));
-		}
-	}
-	
-	public int taille() {
-		return types.size();
+
+	/**
+	 * Add animal.
+	 *
+	 * @param nom          the nom
+	 * @param type         the type
+	 * @param comportement the comportement
+	 */
+	public void addAnimal(String nom, String type, String comportement){
+		animaux.put(nom, new Animal(nom, type, comportement));
 	}
 
-	/** Getter for nom
+	/**
+	 * Afficher liste animaux.
+	 */
+	public void afficherListeAnimaux(){
+		for (Animal animal : animaux.values()) {
+			System.out.println(animal.getNom()+" "+animal.getType()+" "+animal.getComportement());
+		}
+	}
+
+	/**
+	 * Taille int.
+	 *
+	 * @return the number of animals in zoo
+	 */
+	public int taille() {
+		return animaux.size();
+	}
+
+
+	/**
+	 * Gets nom.
+	 *
 	 * @return the nom
 	 */
 	public String getNom() {
 		return nom;
 	}
 
-	/** Setter
-	 * @param nom the nom to set
+	/**
+	 * Sets nom.
+	 *
+	 * @param nom the nom
 	 */
 	public void setNom(String nom) {
 		this.nom = nom;
